@@ -2,8 +2,6 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -23,16 +21,13 @@ jobs:
       run: npm ci
     
     - name: Build application
-      env:
-        VITE_API_AUTH_URL: ${{ secrets.API_AUTH_URL }}
-        VITE_API_MAIN_URL: ${{ secrets.API_MAIN_URL }}
       run: npm run build
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build-files
-        path: dist/
+        path: build/
 
   deploy:
     needs: build-and-test
@@ -46,7 +41,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: build-files
-        path: dist/
+        path: build/
     
     - name: Deploy to S3
       env:
@@ -55,5 +50,5 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
         S3_BUCKET: ${{ secrets.S3_BUCKET }}
       run: |
-        aws s3 sync dist/ s3://$S3_BUCKET --delete
+        aws s3 sync build/ s3://$S3_BUCKET --delete
         aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
