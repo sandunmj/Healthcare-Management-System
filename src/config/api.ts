@@ -10,6 +10,7 @@ const API_CONFIG = {
   },
 };
 
+
 const environment = 'development';
 const config = API_CONFIG[environment as keyof typeof API_CONFIG] || API_CONFIG.development;
 
