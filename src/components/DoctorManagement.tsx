@@ -6,6 +6,7 @@ import { Label } from './ui/label';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
 import { toast } from 'sonner@2.0.3';
 import { Plus, Edit, UserPlus, Clock } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 import { Badge } from './ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
@@ -85,7 +86,7 @@ export default function DoctorManagement({ doctors, onUpdate, onCreate }: Doctor
     if (isCreating) {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await fetch('http://localhost:8080/api/admin/create-doctor', {
+        const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', '/admin/create-doctor')}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

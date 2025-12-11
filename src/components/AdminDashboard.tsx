@@ -5,6 +5,7 @@ import { User } from '../App';
 import { LogOut, BarChart3, Users, UserCog } from 'lucide-react';
 import DoctorManagement from './DoctorManagement';
 import { mockDoctors, mockAppointments, mockPatients } from './mockData';
+import { API_ENDPOINTS } from '../config/api';
 
 // Lazy load AdminReports to reduce initial memory usage (it imports recharts)
 const AdminReports = lazy(() => import('./AdminReports'));
@@ -26,7 +27,7 @@ export default function AdminDashboard({ user, onLogout }: AdminDashboardProps) 
     setLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8080/api/admin/doctors', {
+      const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', '/admin/doctors')}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

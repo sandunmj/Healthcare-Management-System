@@ -5,7 +5,7 @@ const API_CONFIG = {
     main: 'http://localhost:8081/api',
   },
   production: {
-    auth: 'http://hospital-app-alb-1244208913.ap-southeast-1.elb.amazonaws.com:80/userservice/api',
+    auth: 'https://d313hjsfmeqfk9.cloudfront.net/userservice/api',
     main: 'http://localhost:8081/api',
   },
 };
@@ -26,7 +26,7 @@ export const API_ENDPOINTS = {
   // Doctor endpoints
   DOCTOR: {
     ALL: `${config.auth}/doctor/all`,
-    PROFILE: (id: string) => `${config.main}/doctor/${id}`,
+    PROFILE: (id: string) => `${config.auth}/doctor/${id}`,
   },
   
   // Session endpoints

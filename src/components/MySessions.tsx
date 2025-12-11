@@ -7,6 +7,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { toast } from 'sonner@2.0.3';
 import { Calendar, Clock, Users, Play, X, CheckCircle, Plus } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 
 interface Session {
   id: string;
@@ -43,7 +44,7 @@ export default function MySessions({ userId }: MySessionsProps) {
   const fetchSessions = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8081/api/sessions', {
+      const response = await fetch(API_ENDPOINTS.SESSIONS.CREATE, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -104,7 +105,7 @@ export default function MySessions({ userId }: MySessionsProps) {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8081/api/sessions', {
+      const response = await fetch(API_ENDPOINTS.SESSIONS.CREATE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
