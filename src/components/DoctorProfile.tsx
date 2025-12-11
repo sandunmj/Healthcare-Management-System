@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { toast } from 'sonner@2.0.3';
 import { Badge } from './ui/badge';
 import { X } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 
 interface DoctorProfileProps {
   userId: string;
@@ -37,7 +38,7 @@ export default function DoctorProfile({ userId, userEmail }: DoctorProfileProps)
   const fetchDoctorProfile = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`http://localhost:8080/api/doctor/query/${userEmail}`, {
+      const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', `/doctor/query/${userEmail}`)}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -70,7 +71,7 @@ export default function DoctorProfile({ userId, userEmail }: DoctorProfileProps)
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8080/api/doctor/update', {
+      const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', '/doctor/update')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

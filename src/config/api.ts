@@ -26,7 +26,7 @@ export const API_ENDPOINTS = {
   // Doctor endpoints
   DOCTOR: {
     ALL: `${config.auth}/doctor/all`,
-    PROFILE: (id: string) => `${config.main}/doctor/${id}`,
+    PROFILE: (id: string) => `${config.auth}/doctor/${id}`,
   },
   
   // Session endpoints

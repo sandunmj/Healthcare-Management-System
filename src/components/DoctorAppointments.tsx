@@ -10,6 +10,7 @@ import { Checkbox } from './ui/checkbox';
 import { Calendar, Clock, User, Search, FileText, History, Pill, CheckCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { toast } from 'sonner@2.0.3';
+import { API_ENDPOINTS } from '../config/api';
 
 interface Appointment {
   id: string;
@@ -47,7 +48,7 @@ export default function DoctorAppointments({ onUpdate }: DoctorAppointmentsProps
   const fetchAppointments = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8081/api/appointments', {
+      const response = await fetch(API_ENDPOINTS.APPOINTMENTS.LIST, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -122,7 +123,7 @@ export default function DoctorAppointments({ onUpdate }: DoctorAppointmentsProps
     setHistoryLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`http://localhost:8081/api/prescriptions/patient/${patientId}`, {
+      const response = await fetch(`${API_ENDPOINTS.APPOINTMENTS.LIST.replace('/appointments', `/prescriptions/patient/${patientId}`)}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -203,7 +204,7 @@ export default function DoctorAppointments({ onUpdate }: DoctorAppointmentsProps
     
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:8081/api/prescriptions', {
+      const response = await fetch(API_ENDPOINTS.APPOINTMENTS.LIST.replace('/appointments', '/prescriptions'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
