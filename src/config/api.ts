@@ -6,7 +6,7 @@ const API_CONFIG = {
   },
   production: {
     auth: 'https://d313hjsfmeqfk9.cloudfront.net/userservice/api',
-    main: 'http://localhost:8081/api',
+    main: 'https://d313hjsfmeqfk9.cloudfront.net/appointmentservice/api',
   },
 };
 
