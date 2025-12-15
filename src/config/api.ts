@@ -42,6 +42,13 @@ export const API_ENDPOINTS = {
     LIST: `${config.main}/appointments`,
     CANCEL: (id: string) => `${config.main}/appointments/${id}`,
   },
+  
+  // Prescription endpoints
+  PRESCRIPTIONS: {
+    CREATE: `${config.main}/prescriptions`,
+    LIST: `${config.main}/prescriptions`,
+    PATIENT: (patientId: string) => `${config.main}/prescriptions/patient/${patientId}`,
+  },
 };
 
 // Legacy exports for backward compatibility
