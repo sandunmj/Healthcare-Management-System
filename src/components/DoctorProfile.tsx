@@ -41,6 +41,7 @@ export default function DoctorProfile({ userId, userEmail }: DoctorProfileProps)
       const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', `/doctor/query/${userEmail}`)}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       });
 

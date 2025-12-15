@@ -30,6 +30,7 @@ export default function AdminDashboard({ user, onLogout }: AdminDashboardProps) 
       const response = await fetch(`${API_ENDPOINTS.DOCTOR.ALL.replace('/doctor/all', '/admin/doctors')}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       });
 

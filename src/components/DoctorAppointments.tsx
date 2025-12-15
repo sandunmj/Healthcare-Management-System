@@ -123,7 +123,7 @@ export default function DoctorAppointments({ onUpdate }: DoctorAppointmentsProps
     setHistoryLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`${API_ENDPOINTS.APPOINTMENTS.LIST.replace('/appointments', `/prescriptions/patient/${patientId}`)}`, {
+      const response = await fetch(API_ENDPOINTS.PRESCRIPTIONS.PATIENT(patientId), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export default function DoctorAppointments({ onUpdate }: DoctorAppointmentsProps
     
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(API_ENDPOINTS.APPOINTMENTS.LIST.replace('/appointments', '/prescriptions'), {
+      const response = await fetch(API_ENDPOINTS.PRESCRIPTIONS.CREATE, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

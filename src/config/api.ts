@@ -6,7 +6,7 @@ const API_CONFIG = {
   },
   production: {
     auth: 'https://d313hjsfmeqfk9.cloudfront.net/userservice/api',
-    main: 'http://localhost:8081/api',
+    main: 'https://d313hjsfmeqfk9.cloudfront.net/appointmentservice/api',
   },
 };
 
@@ -41,6 +41,13 @@ export const API_ENDPOINTS = {
     CREATE: `${config.main}/appointments`,
     LIST: `${config.main}/appointments`,
     CANCEL: (id: string) => `${config.main}/appointments/${id}`,
+  },
+  
+  // Prescription endpoints
+  PRESCRIPTIONS: {
+    CREATE: `${config.main}/prescriptions`,
+    LIST: `${config.main}/prescriptions`,
+    PATIENT: (patientId: string) => `${config.main}/prescriptions/patient/${patientId}`,
   },
 };
 
